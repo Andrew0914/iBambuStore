@@ -32,7 +32,7 @@ public class Usuario  implements Serializable {
     public String getContrasena() {
         return contrasena;
     }
-
+/*Te amo <3*/
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }  
