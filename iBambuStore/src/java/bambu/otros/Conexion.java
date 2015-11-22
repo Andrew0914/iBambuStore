@@ -18,11 +18,11 @@ public class Conexion {
     private String bd;
     private String server;
 
-    public Conexion(String usr, String pass) {
+    public Conexion(String usuario, String password) {
         this.bd = "bambu_store";
         this.server = "localhost";
-        this.usuario = usr;
-        this.password = pass;
+        this.usuario = usuario;
+        this.password = password;
     }
 
     public Connection conectar() {
@@ -32,6 +32,7 @@ public class Conexion {
             conn =DriverManager.getConnection("jdbc:mysql://" + this.server + "/" + this.bd , this.usuario,this.password);
             System.out.println("Conexion exitosa!");
         } catch (SQLException ex) {
+            System.out.println(ex);
         }
         catch(ClassNotFoundException clase){
             System.err.println("No se encotnro el driver" + clase.getMessage());
@@ -40,8 +41,8 @@ public class Conexion {
     }
     
     public static void main(String[] args) {
-        Conexion conexion1 =new Conexion("root","");
+        Conexion conexion1 =new Conexion("root","dr4g0n");
         Connection test = conexion1.conectar();
-        System.out.println(test);
+        
     }
 }
