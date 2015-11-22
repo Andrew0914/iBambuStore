@@ -18,11 +18,11 @@ public class Conexion {
     private String bd;
     private String server;
 
-    public Conexion() {
+    public Conexion(String usr, String pass) {
         this.bd = "bambu_store";
-        this.server = "192.168.0.5";
-        this.usuario = "Daniel_normal";
-        this.password = "pestanias001";
+        this.server = "localhost";
+        this.usuario = usr;
+        this.password = pass;
     }
 
     public Connection conectar() {
@@ -32,14 +32,6 @@ public class Conexion {
             conn =DriverManager.getConnection("jdbc:mysql://" + this.server + "/" + this.bd , this.usuario,this.password);
             System.out.println("Conexion exitosa!");
         } catch (SQLException ex) {
-            System.err.println("No se conecto, probando con otra configuracion ... ");
-            this.password = "";
-            try{
-            conn =DriverManager.getConnection("jdbc:mysql://" + this.server + "/" + this.bd , this.usuario,this.password);
-                System.out.println("Conexion exitosa!");
-            }catch(SQLException sql){
-                System.err.println("Oops! ocurrió algun problema con la BD" + sql.getMessage());
-            }
         }
         catch(ClassNotFoundException clase){
             System.err.println("No se encotnro el driver" + clase.getMessage());
@@ -48,7 +40,7 @@ public class Conexion {
     }
     
     public static void main(String[] args) {
-        Conexion conexion1 =new Conexion();
+        Conexion conexion1 =new Conexion("root","");
         Connection test = conexion1.conectar();
         System.out.println(test);
     }
