@@ -1,5 +1,6 @@
 /*
  *Clase para la conexion al a base de datos
+solo agregue este comentario para probar un commit en github
  */
 package bambu.otros;
 
