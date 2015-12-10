@@ -20,11 +20,12 @@ public class Conexion {
     private Connection con;
     
 
+
     public Conexion(String usr, String pass) {
         this.bd = "mysql";
         this.server = "localhost";
-        this.usuario = usr;
-        this.password = pass;
+        this.usuario = usuario;
+        this.password = password;
     }
 
     public Connection conectar() {
@@ -34,6 +35,7 @@ public class Conexion {
             conn =DriverManager.getConnection("jdbc:mysql://" + this.server + "/" + this.bd , this.usuario,this.password);
             System.out.println("Conexion exitosa!");
         } catch (SQLException ex) {
+            System.out.println(ex);
         }
         catch(ClassNotFoundException clase){
             System.err.println("No se encotnro el driver" + clase.getMessage());
@@ -46,5 +48,6 @@ public class Conexion {
         Conexion conexion1 =new Conexion("andy","1234");
         Connection prueba = conexion1.conectar();
         System.out.println(prueba);
+
     }
 }
