@@ -17,9 +17,11 @@ public class Conexion {
     private String password;
     private String bd;
     private String server;
+    private Connection con;
+    
 
     public Conexion(String usr, String pass) {
-        this.bd = "bambu_store";
+        this.bd = "mysql";
         this.server = "localhost";
         this.usuario = usr;
         this.password = pass;
@@ -40,7 +42,8 @@ public class Conexion {
     }
     
     public static void main(String[] args) {
-        Conexion conexion1 =new Conexion("root","");
+        
+        Conexion conexion1 =new Conexion("andy","1234");
         Connection test = conexion1.conectar();
         System.out.println(test);
     }
