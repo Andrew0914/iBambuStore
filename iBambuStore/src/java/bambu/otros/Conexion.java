@@ -44,7 +44,7 @@ public class Conexion {
     public static void main(String[] args) {
         
         Conexion conexion1 =new Conexion("andy","1234");
-        Connection test = conexion1.conectar();
-        System.out.println(test);
+        Connection prueba = conexion1.conectar();
+        System.out.println(prueba);
     }
 }

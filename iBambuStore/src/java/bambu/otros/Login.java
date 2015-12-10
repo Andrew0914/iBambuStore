@@ -41,5 +41,6 @@ public class Login extends Conexion{
     public static void main(String[] args) {
         Login log = new Login("root","");
         System.out.println(log.autenticacion("root","" ));
+        System.out.println("");
     }
 }
