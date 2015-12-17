@@ -1,6 +1,7 @@
 package bambu.productos;
 
 import bambu.otros.Conexion;
+import bambu.otros.Usuario;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.sql.Connection;
@@ -15,24 +16,24 @@ public class Productos {
     private double precio1;
     private double precio2;
     private int hasCode;
-    private Connection conn;
+    public Usuario usuario;
     private Statement ejecutor;
     private ResultSet content;
 
-    public Productos() {
-        this.conn = new Conexion().conectar();
+    public Productos(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Productos(String codigo_producto) {
+    public Productos(String codigo_producto,Usuario usuario) {
         this.codigo_producto = codigo_producto;
-        this.conn = new Conexion().conectar();
+        this.usuario = usuario;
     }
 
-    public Productos(String codigo_producto, double precio1, double precio2) {
+    public Productos(String codigo_producto, double precio1, double precio2,Usuario usuario) {
         this.codigo_producto = codigo_producto;
         this.precio1 = precio1;
         this.precio2 = precio2;
-        this.conn = new Conexion().conectar();
+        this.usuario = usuario;
     }
 
     public JsonObject getProducto() {
@@ -40,7 +41,7 @@ public class Productos {
         JsonObject json = new JsonObject();
         try {
 
-            this.ejecutor = this.conn.createStatement();
+            this.ejecutor = this.usuario.conexion.conectar().createStatement();
             this.content = this.ejecutor.executeQuery(query);
 
             while (this.content.next()) {
@@ -84,7 +85,7 @@ public class Productos {
         }
         try {
 
-            this.ejecutor = this.conn.createStatement();
+            this.ejecutor = this.usuario.conexion.conectar().createStatement();
             this.content = this.ejecutor.executeQuery(query);
             while (this.content.next()) {
                 json.addProperty("codigo_producto", this.content.getString("codigo_producto"));
@@ -123,7 +124,7 @@ public class Productos {
             query += " WHERE codigo_producto='" + dato[0] + "'";
 
             try {
-                this.ejecutor = this.conn.createStatement();
+                this.ejecutor = this.usuario.conexion.conectar().createStatement();
                 System.out.println(query);
                 this.ejecutor.execute(query);
                 query = new String();
@@ -139,7 +140,7 @@ public class Productos {
         boolean resultado = false;
         String query = "DELETE FROM productos WHERE codigo_producto='" + this.codigo_producto + "'";
         try {
-            this.ejecutor = this.conn.createStatement();
+            this.ejecutor = this.usuario.conexion.conectar().createStatement();
             this.ejecutor.execute(query);
             resultado = true;
         } catch (SQLException x) {
@@ -160,7 +161,7 @@ public class Productos {
                 + preciocompra+ "','"
                 + barras+"')";
         try {
-            this.ejecutor = this.conn.createStatement();
+            this.ejecutor = this.usuario.conexion.conectar().createStatement();
             this.ejecutor.execute(query);
         } catch (SQLException ex) {
             System.out.println(ex);

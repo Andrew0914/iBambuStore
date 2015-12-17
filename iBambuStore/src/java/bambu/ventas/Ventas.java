@@ -1,6 +1,7 @@
 package bambu.ventas;
 
 import bambu.otros.Conexion;
+import bambu.otros.Usuario;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -23,16 +24,15 @@ import java.util.HashMap;
 public class Ventas {
 
     public static HashMap<String, Double> detalles = new HashMap();
-    private Connection conn;
     private Statement ejecutor;
     private ResultSet rs;
     private int id_ultimaVenta;
     private int hasCodigo;
     private ResultSet venta_general;
     private ResultSet detallesVenta;
-
-    public Ventas() {
-        this.conn = new Conexion().conectar();
+    private Usuario usuario;
+    public Ventas(Usuario usuario) {
+        this.usuario = usuario;
         this.id_ultimaVenta = 0;
         this.hasCodigo = 0;
     }
@@ -48,7 +48,7 @@ public class Ventas {
                 + total + "'"
                 + ")";
         try {
-            ejecutor = this.conn.createStatement();
+            ejecutor = this.usuario.conexion.conectar().createStatement();
             ejecutor.execute(nuevaVenta);
             respuesta = true;
         } catch (SQLException ex) {
@@ -61,7 +61,7 @@ public class Ventas {
         boolean respuesta = false;
         String ultimaVenta = "Select MAX(id_venta) AS ultima_venta FROM ventas ";
         try {
-            ejecutor = this.conn.createStatement();
+            ejecutor = this.usuario.conexion.conectar().createStatement();
             rs = ejecutor.executeQuery(ultimaVenta);
             if (rs.next()) {
                 this.id_ultimaVenta = rs.getInt("ultima_venta");
@@ -96,7 +96,7 @@ public class Ventas {
                         + current_iva + ","
                         + current_total + ")");
 
-                this.ejecutor = this.conn.createStatement();
+                this.ejecutor = this.usuario.conexion.conectar().createStatement();
 
                 this.ejecutor.execute(query_detalle);
 
@@ -115,13 +115,13 @@ public class Ventas {
         String ultimaVenta = "Select MAX(id_venta) AS ultima_venta FROM ventas ";
         int venta_ticket = 0;
         try {
-            ejecutor = this.conn.createStatement();
+            ejecutor = this.usuario.conexion.conectar().createStatement();
             rs = ejecutor.executeQuery(ultimaVenta);
             if (rs.next()) {
                 venta_ticket = rs.getInt("ultima_venta");
                 String datos_venta = "SELECT * FROM ventas where id_venta=" + venta_ticket;
                 String datos_detalles = "SELECT  * FROM venta_detalle WHERE id_venta=" + venta_ticket;
-                this.ejecutor = this.conn.createStatement();
+                this.ejecutor = this.usuario.conexion.conectar().createStatement();
                 this.venta_general = this.ejecutor.executeQuery(datos_venta);
                 this.detallesVenta = this.ejecutor.executeQuery(datos_detalles);
             }

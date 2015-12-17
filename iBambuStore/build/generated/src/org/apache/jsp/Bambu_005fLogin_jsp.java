@@ -42,54 +42,54 @@ public final class Bambu_005fLogin_jsp extends org.apache.jasper.runtime.HttpJsp
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    <head>\n");
-      out.write("        <title>Login BambuStore</title>\n");
-      out.write("        <meta charset=\"UTF-8\">\n");
-      out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
-      out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/estilos.css\">\n");
-      out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("        <ul id=\"login\">\n");
-      out.write("            <li>\n");
-      out.write("                <img src=\"imagen/logo_bs.png\">\n");
-      out.write("            </li>\n");
-      out.write("            <li>\n");
-      out.write("                <input type=\"text\" id=\"nombre\" placeholder=\"Usuario\">\n");
-      out.write("            </li>\n");
-      out.write("            <li>\n");
-      out.write("                <input type=\"password\" id=\"contrasena\" placeholder=\"Password\">\n");
-      out.write("            </li>\n");
-      out.write("            <li>\n");
-      out.write("                <button id=\"iniciar_sesion\">Iniciar sesi&oacute;n</button>\n");
-      out.write("            </li>\n");
-      out.write("            <li>\n");
-      out.write("                <button id=\"nuevo_usuario\">Nuevo Usuario</button>\n");
-      out.write("            </li>\n");
-      out.write("        </ul>\n");
-      out.write("        <div id=\"pop\">\n");
-      out.write("            <span id=\"close\"> X </span>\n");
-      out.write("            <ul>\n");
-      out.write("\n");
-      out.write("                <li> <img src=\"imagen/add199.png\"> </li> \n");
-      out.write("                <li><h3>Nuevo usuario</h3></li>\n");
-      out.write("                <li>\n");
-      out.write("                    <input type=\"text\" id=\"nuevo_nombre\" placeholder=\"Usuario\">\n");
-      out.write("                </li>\n");
-      out.write("                <li>\n");
-      out.write("                    <input type=\"password\" id=\"nueva_contrasena\" placeholder=\"Password\">\n");
-      out.write("                </li>\n");
-      out.write("                <li>\n");
-      out.write("                    <input type=\"password\" id=\"x_contrasena\" placeholder=\"Repetir password...\">\n");
-      out.write("                </li>\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <title>Login BambuStore</title>\r\n");
+      out.write("        <meta charset=\"UTF-8\">\r\n");
+      out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n");
+      out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/estilos.css\">\r\n");
+      out.write("    </head>\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <ul id=\"login\">\r\n");
+      out.write("            <li>\r\n");
+      out.write("                <img src=\"imagen/logo_bs.png\">\r\n");
+      out.write("            </li>\r\n");
+      out.write("            <li>\r\n");
+      out.write("                <input type=\"text\" id=\"nombre\" placeholder=\"Usuario\">\r\n");
+      out.write("            </li>\r\n");
+      out.write("            <li>\r\n");
+      out.write("                <input type=\"password\" id=\"contrasena\" placeholder=\"Password\">\r\n");
+      out.write("            </li>\r\n");
+      out.write("            <li>\r\n");
+      out.write("                <button id=\"iniciar_sesion\">Iniciar sesi&oacute;n</button>\r\n");
+      out.write("            </li>\r\n");
+      out.write("            <!--<li>\r\n");
+      out.write("                <button id=\"nuevo_usuario\">Nuevo Usuario</button>\r\n");
+      out.write("            </li>->\r\n");
+      out.write("        </ul>\r\n");
+      out.write("        <!--<div id=\"pop\">\r\n");
+      out.write("            <span id=\"close\"> X </span>\r\n");
+      out.write("            <ul>\r\n");
+      out.write("\r\n");
+      out.write("                <li> <img src=\"imagen/add199.png\"> </li> \r\n");
+      out.write("                <li><h3>Nuevo usuario</h3></li>\r\n");
+      out.write("                <li>\r\n");
+      out.write("                    <input type=\"text\" id=\"nuevo_nombre\" placeholder=\"Usuario\">\r\n");
+      out.write("                </li>\r\n");
+      out.write("                <li>\r\n");
+      out.write("                    <input type=\"password\" id=\"nueva_contrasena\" placeholder=\"Password\">\r\n");
+      out.write("                </li>\r\n");
+      out.write("                <li>\r\n");
+      out.write("                    <input type=\"password\" id=\"x_contrasena\" placeholder=\"Repetir password...\">\r\n");
+      out.write("                </li>\r\n");
       out.write("                ");
 
-                    try{
+                  /*  try{
                     
                     int puede = ((Usuario) request.getSession().getAttribute("usuario")).getPrivilegio();
                     if (puede == 1) {
@@ -102,23 +102,23 @@ public final class Bambu_005fLogin_jsp extends org.apache.jasper.runtime.HttpJsp
                     }
                     }catch(NullPointerException n){
                         //System.out.println("No hay sesion activa");
-                    }
+                    }*/
                     
                 
-      out.write("\n");
-      out.write("                <li>\n");
-      out.write("                    <button id=\"crear_usuario\"> Crear Usuario</button>\n");
-      out.write("                </li>\n");
-      out.write("\n");
-      out.write("            </ul>\n");
-      out.write("        </div>\n");
-      out.write("\n");
-      out.write("        <div id=\"capa\"></div>\n");
-      out.write("\n");
-      out.write("        <script type=\"text/javascript\" src=\"javascript/jquery.js\"></script>\n");
-      out.write("        <script type=\"text/javascript\" src=\"javascript/Sesion.js\"></script>\n");
-      out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("\r\n");
+      out.write("                <li>\r\n");
+      out.write("                    <button id=\"crear_usuario\"> Crear Usuario</button>\r\n");
+      out.write("                </li>\r\n");
+      out.write("\r\n");
+      out.write("            </ul>\r\n");
+      out.write("        </div>\r\n");
+      out.write("\r\n");
+      out.write("        <div id=\"capa\"></div>-->\r\n");
+      out.write("\r\n");
+      out.write("        <script type=\"text/javascript\" src=\"javascript/jquery.js\"></script>\r\n");
+      out.write("        <script type=\"text/javascript\" src=\"javascript/Sesion.js\"></script>\r\n");
+      out.write("    </body>\r\n");
+      out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

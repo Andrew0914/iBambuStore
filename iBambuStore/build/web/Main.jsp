@@ -4,6 +4,7 @@
     Author     : Andrew
 --%>
 
+<%@page import="bambu.otros.Usuario"%>
 <%@page import="bambu.contabilidad.Saldos"%>
 <%@page import="bambu.proveedores.Proveedores"%>
 <%@page import="bambu.proveedores.Compras"%>
@@ -12,10 +13,11 @@
 <%@page import="bambu.productos.Productos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
     String ID = request.getParameter("ID");
     if (ID.equals("obtener_producto")) {
         String codigo = request.getParameter("codigo_producto");
-        Productos producto = new Productos(codigo);
+        Productos producto = new Productos(codigo,usuario);
         if (producto.getProducto().get("hasCode").getAsInt() == 1) {
 
             String cod_producto = producto.getProducto().get("codigo_producto").getAsString();
@@ -45,7 +47,7 @@
     }
 
     if (ID.equals("hacer_venta")) {
-        Ventas venta = new Ventas();
+        Ventas venta = new Ventas(usuario);
         JsonObject json = new JsonObject();
         double total_venta = Double.parseDouble(request.getParameter("total_venta"));
         if (venta.setVenta(total_venta)) {
@@ -101,7 +103,7 @@
     if (ID.equals("compra_detalle")) {
         String codigo = request.getParameter("codigo_producto");
         double cantidad = Double.parseDouble(request.getParameter("cantidad"));
-        Productos producto = new Productos(codigo);
+        Productos producto = new Productos(codigo,usuario);
         JsonObject json = new JsonObject();
         json = producto.getProducto();
 
@@ -133,13 +135,13 @@
 
     if (ID.equals("obtener_proveedor")) {
         String proveedor = request.getParameter("proveedor");
-        Proveedores prov = new Proveedores(proveedor);
+        Proveedores prov = new Proveedores(proveedor,usuario);
         out.clearBuffer();
         out.println(prov.getProveedor());
     }
 
     if (ID.equals("hacer_compra")) {
-        Compras compra = new Compras();
+        Compras compra = new Compras(usuario);
         JsonObject json = new JsonObject();
         double total_compra = Double.parseDouble(request.getParameter("total_venta"));
         double iva_total = Double.parseDouble(request.getParameter("iva_total"));
@@ -176,14 +178,14 @@
         double precio2 = Double.parseDouble(request.getParameter("precio2"));
         int todos = Integer.parseInt(request.getParameter("todos"));
         String ordenamiento = request.getParameter("ordenamiento");
-        Productos producto = new Productos(cod_producto, precio1, precio2);
+        Productos producto = new Productos(cod_producto, precio1, precio2,usuario);
         out.clearBuffer();
         out.println(producto.busquedaProductos(ordenamiento, todos));
     }
 
     if (ID.equals("update_producto")) {
         JsonObject json = new JsonObject();
-        Productos producto = new Productos();
+        Productos producto = new Productos(usuario);
         String data = request.getParameter("datos");
         if (producto.updateProducto(data)) {
             json.addProperty("update", "ok");
@@ -197,7 +199,7 @@
     if (ID.equals("delete_producto")) {
         JsonObject json = new JsonObject();
         String codigo = request.getParameter("producto");
-        Productos producto = new Productos(codigo);
+        Productos producto = new Productos(codigo,usuario);
         if (producto.borrarUnProducto()) {
             json.addProperty("update", "ok");
         } else {
@@ -208,7 +210,7 @@
     }
     if (ID.equals("update_proveedor")) {
         JsonObject json = new JsonObject();
-        Proveedores proveedor = new Proveedores();
+        Proveedores proveedor = new Proveedores(usuario);
         String data = request.getParameter("datos");
         if (proveedor.updateProveedor(data)) {
             json.addProperty("update", "ok");
@@ -222,7 +224,7 @@
     if (ID.equals("delete_proveedor")) {
         JsonObject json = new JsonObject();
         int id_proveedor = Integer.parseInt(request.getParameter("proveedor"));
-        Proveedores proveedor = new Proveedores();
+        Proveedores proveedor = new Proveedores(usuario);
         if (proveedor.borrarUnProveedor(id_proveedor)) {
             json.addProperty("update", "ok");
         } else {
@@ -239,7 +241,7 @@
         String distribuidor = request.getParameter("distribuidor");
         String paterno = request.getParameter("paterno");
         String materno = request.getParameter("materno");
-        Proveedores proveedor = new Proveedores();
+        Proveedores proveedor = new Proveedores(usuario);
         if (proveedor.insertarProveedor(empresa, telefono, distribuidor, paterno,materno)) {
             json.addProperty("update", "ok");
         } else {
@@ -257,7 +259,7 @@
         double precioventa = Double.parseDouble(request.getParameter("precioventa"));
         double preciocompra = Double.parseDouble(request.getParameter("preciocompra"));
         int tienebarra = Integer.parseInt(request.getParameter("barras"));
-        Productos producto = new Productos();
+        Productos producto = new Productos(usuario);
         if (producto.insertarProducto(codigo, nombre, medida, unidad, precioventa,tienebarra,preciocompra)) {
             json.addProperty("update", "ok");
         } else {
@@ -269,7 +271,7 @@
     if (ID.equals("imprimir_ticket")) {
         JsonObject json = new JsonObject();
         json.addProperty("imprimir", "ok");
-        Ventas ticket = new Ventas();
+        Ventas ticket = new Ventas(usuario);
         ticket.imprimirTickect();
         out.clearBuffer();
         out.println(json);
@@ -278,14 +280,14 @@
     if(ID.equals("reporte_venta")){
       String fecha1 = request.getParameter("fecha1");
       String fecha2 = request.getParameter("fecha2");
-      Saldos ventas = new Saldos();
+      Saldos ventas = new Saldos(usuario);
       out.clearBuffer();
       out.println(ventas.generarReporteVentas(fecha1, fecha2));
     }
     if(ID.equals("reporte_compra")){
       String fecha1 = request.getParameter("fecha1");
       String fecha2 = request.getParameter("fecha2");
-      Saldos compras = new Saldos();
+      Saldos compras = new Saldos(usuario);
       out.clearBuffer();
       out.println(compras.generarReportCompras(fecha1, fecha2));  
     }

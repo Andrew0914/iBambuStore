@@ -1,6 +1,7 @@
 package bambu.proveedores;
 
 import bambu.otros.Conexion;
+import bambu.otros.Usuario;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,14 +15,14 @@ import java.util.HashMap;
 public class Compras {
 
     public static HashMap<String, Double> productos = new HashMap();
-    private Connection conn;
+    public Usuario usuario;
     private Statement ejecutor;
     private ResultSet rs;
     private int id_ultimaCompra;
     private int hasCodigo;
 
-    public Compras() {
-        this.conn = new Conexion().conectar();
+    public Compras(Usuario usuario) {
+        this.usuario = usuario;
         this.id_ultimaCompra = 0;
         this.hasCodigo = 0;
     }
@@ -36,7 +37,7 @@ public class Compras {
                 + credito + ","
                 + proveedor + ")";
         try {
-            this.ejecutor = this.conn.createStatement();
+            this.ejecutor = this.usuario.conexion.conectar().createStatement();
             this.ejecutor.execute(nuevaCompra);
             respuesta = true;
         } catch (SQLException ex) {
@@ -49,7 +50,7 @@ public class Compras {
         boolean respuesta = false;
         String ultimaCompra = "Select MAX(id_compra) AS ultima_compra FROM compras ";
         try {
-            ejecutor = this.conn.createStatement();
+            ejecutor = this.usuario.conexion.conectar().createStatement();
             rs = ejecutor.executeQuery(ultimaCompra);
             if (rs.next()) {
                 this.id_ultimaCompra = rs.getInt("ultima_compra");
@@ -86,7 +87,7 @@ public class Compras {
                         + current_iva + ","
                         + current_total + ")");
 
-                this.ejecutor = this.conn.createStatement();
+                this.ejecutor = this.usuario.conexion.conectar().createStatement();
 
                 this.ejecutor.execute(query_detalle);
 

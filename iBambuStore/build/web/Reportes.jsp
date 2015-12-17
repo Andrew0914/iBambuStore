@@ -22,15 +22,10 @@
                 <ul>
                     <li><a href="index.jsp">Ventas <img src='imagen/signal12.png'></a></li> 
                     <li><a href="Compras.jsp">Compras <img src='imagen/shop32.png'></a></li>
-                            <%
-                                int puede = ((Usuario) request.getSession().getAttribute("usuario")).getPrivilegio();
-                                if (puede == 1) {
-                                    out.println("<li><a href='Productos.jsp'>Productos <img src='imagen/product3.png'></a></li>"
-                                            + "<li><a href='Proveedores.jsp'> Proveedor <img src='imagen/delivery36.png'></a></li>"
-                                            + "<li><a href='Reportes.jsp'>Reportes <img src='imagen/report1.png'></a></li>"
-                                            + "<li><a id='nuevoUsuario'><img src='imagen/adduser.png'></a></li>");
-                                }
-                            %>
+                    <li><a href='Productos.jsp'>Productos <img src='imagen/product3.png'></a></li>
+                    <li><a href='Proveedores.jsp'> Proveedor <img src='imagen/delivery36.png'></a></li>
+                    <li><a href='Reportes.jsp'>Reportes <img src='imagen/report1.png'></a></li>
+                    <!--<li><a id='nuevoUsuario'><img src='imagen/adduser.png'></a></li>-->
                     <li id="logout"><img src="imagen/door9.png"></li>
                 </ul>
             </nav>

@@ -22,15 +22,10 @@
                 <ul>
                     <li><a href="index.jsp">Ventas <img src='imagen/signal12.png'></a></li> 
                     <li><a href="Compras.jsp">Compras <img src='imagen/shop32.png'></a></li>
-                            <%
-                                int puede = ((Usuario) request.getSession().getAttribute("usuario")).getPrivilegio();
-                                if (puede == 1) {
-                                    out.println("<li><a href='Productos.jsp'>Productos <img src='imagen/product3.png'></a></li>"
-                                            + "<li><a href='Proveedores.jsp'> Proveedor <img src='imagen/delivery36.png'></a></li>"
-                                            + "<li><a href='Reportes.jsp'>Reportes <img src='imagen/report1.png'></a></li>"
-                                            + "<li><a id='nuevoUsuario'><img src='imagen/adduser.png'></a></li>");
-                                }
-                            %>
+                    <li><a href='Productos.jsp'>Productos <img src='imagen/product3.png'></a></li>
+                    <li><a href='Proveedores.jsp'> Proveedor <img src='imagen/delivery36.png'></a></li>
+                    <li><a href='Reportes.jsp'>Reportes <img src='imagen/report1.png'></a></li>
+                    <!--<li><a id='nuevoUsuario'><img src='imagen/adduser.png'></a></li>-->
                     <li id="logout"><img src="imagen/door9.png"></li>
                 </ul>
             </nav>
@@ -58,21 +53,21 @@
                 </tr>
             </table>
         </section>
-                    <div id="popNuevoProveedor">
-                        <h3>Nuevo proveedor</h3>
-                        <ul>
-                            <li><input type="text" id="nombre_empresa" placeholder="Empresa" class="rangos"><br><br></li>
-                            <li><input type="text" id="telefonoprov" placeholder="Telefono" class="rangos soloNumeros"><br><br></li>
-                            <li><input type="text" id="distribuidorprov" placeholder="Nombre del distribuidor" class="rangos"><br><br></li>
-                            <li><input type="text" id="paternoprov" placeholder="Apellido Paterno"class="rangos"><br><br></li>
-                            <li><input type="text" id="maternoprov" placeholder="Apellido Materno"class="rangos"><br><br></li>
-                            <li>
-                                <button id="addProveedor" class="btnCompras espacioinput"><img src="imagen/agregar.png"></button><br><br>
-                                <button id="cancelarAddProv" class="btnCompras"><img src="imagen/cancel.png"> </button>
-                            </li>
-                        </ul>
-                    </div>
-                    <div id="capa"></div>
+        <div id="popNuevoProveedor">
+            <h3>Nuevo proveedor</h3>
+            <ul>
+                <li><input type="text" id="nombre_empresa" placeholder="Empresa" class="rangos"><br><br></li>
+                <li><input type="text" id="telefonoprov" placeholder="Telefono" class="rangos soloNumeros"><br><br></li>
+                <li><input type="text" id="distribuidorprov" placeholder="Nombre del distribuidor" class="rangos"><br><br></li>
+                <li><input type="text" id="paternoprov" placeholder="Apellido Paterno"class="rangos"><br><br></li>
+                <li><input type="text" id="maternoprov" placeholder="Apellido Materno"class="rangos"><br><br></li>
+                <li>
+                    <button id="addProveedor" class="btnCompras espacioinput"><img src="imagen/agregar.png"></button><br><br>
+                    <button id="cancelarAddProv" class="btnCompras"><img src="imagen/cancel.png"> </button>
+                </li>
+            </ul>
+        </div>
+        <div id="capa"></div>
         <script type="text/javascript" src="javascript/jquery.js"></script>
         <script type="text/javascript" src="javascript/tootip.js"></script>
         <script type="text/javascript" src="javascript/Sesion.js"></script>

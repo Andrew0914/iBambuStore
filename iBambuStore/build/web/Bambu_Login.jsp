@@ -28,11 +28,11 @@
             <li>
                 <button id="iniciar_sesion">Iniciar sesi&oacute;n</button>
             </li>
-            <li>
+            <!--<li>
                 <button id="nuevo_usuario">Nuevo Usuario</button>
-            </li>
+            </li>->
         </ul>
-        <div id="pop">
+        <!--<div id="pop">
             <span id="close"> X </span>
             <ul>
 
@@ -48,7 +48,7 @@
                     <input type="password" id="x_contrasena" placeholder="Repetir password...">
                 </li>
                 <%
-                    try{
+                  /*  try{
                     
                     int puede = ((Usuario) request.getSession().getAttribute("usuario")).getPrivilegio();
                     if (puede == 1) {
@@ -61,7 +61,7 @@
                     }
                     }catch(NullPointerException n){
                         //System.out.println("No hay sesion activa");
-                    }
+                    }*/
                     
                 %>
                 <li>
@@ -71,7 +71,7 @@
             </ul>
         </div>
 
-        <div id="capa"></div>
+        <div id="capa"></div>-->
 
         <script type="text/javascript" src="javascript/jquery.js"></script>
         <script type="text/javascript" src="javascript/Sesion.js"></script>

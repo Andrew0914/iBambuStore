@@ -13,10 +13,7 @@ import java.io.IOException;
  * @author Andrew
  */
 public class TestClass {
-    public static void main(String[] args) {
-        Ventas venta = new Ventas();
-        venta.imprimirTickect();
-    }
+    
 
 }
 

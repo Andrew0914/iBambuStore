@@ -22,7 +22,7 @@ function popUp() {
 
 }
 
-function nuevoUsuario() {
+/*function nuevoUsuario() {
     var nombre = $("#nuevo_nombre").val();
     var contrasena = $("#nueva_contrasena").val();
     var nueva_contrasena = $("#x_contrasena").val();
@@ -62,7 +62,7 @@ function nuevoUsuario() {
         });
     }
 }
-
+*/
 function iniciarSesion() {
     var nombre = $("#nombre").val();
     var contrasena = $("#contrasena").val();
@@ -75,13 +75,13 @@ function iniciarSesion() {
         dataType: "json",
         url: "Sesion_usuario.jsp?ID=inicio_sesion",
         success: function (info) {
-            if (info.inicio == "ok") {
+            if (info.sesion == "in") {
 
                 setTimeout(function () {
                     window.location.href = "index.jsp";
                 }, 500);
             }
-            else if (info.inicio == "no") {
+            else{
                 $("#contrasena").after("<p>El usuario o password es incorrecto</p>");
             }
         },
@@ -91,7 +91,7 @@ function iniciarSesion() {
     });
 }
 
-function nuevoUsuario_admin(){
+/*function nuevoUsuario_admin(){
     var nombre = $("#nuevo_nombre").val();
     var contrasena = $("#nueva_contrasena").val();
     var nueva_contrasena = $("#x_contrasena").val();
@@ -129,7 +129,7 @@ function nuevoUsuario_admin(){
         });
     }
 }
-
+*/
 function log_out(){
     $.ajax({scriptCharset: "utf-8",
             contentType: "application/x-www-form-urlencoded;charset=utf-8",

@@ -18,22 +18,24 @@ public class Conexion {
     private String bd;
     private String server;
     private Connection con;
-    
+    public Usuario user;
 
 
     public Conexion(String usr, String pass) {
-        this.bd = "mysql";
+        this.bd = "bambu_store";
         this.server = "localhost";
-        this.usuario = usuario;
-        this.password = password;
+        this.usuario = usr;
+        this.password = pass;
+        System.out.println(this.usuario+ " " + this.password);
     }
 
     public Connection conectar() {
         Connection conn=null;
-        try {
+       
+        try { 
             Class.forName("com.mysql.jdbc.Driver");
             conn =DriverManager.getConnection("jdbc:mysql://" + this.server + "/" + this.bd , this.usuario,this.password);
-            System.out.println("Conexion exitosa!");
+            this.user = new Usuario(this, true);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -43,11 +45,4 @@ public class Conexion {
         return conn;
     }
     
-    public static void main(String[] args) {
-        
-        Conexion conexion1 =new Conexion("andy","1234");
-        Connection prueba = conexion1.conectar();
-        System.out.println(prueba);
-
-    }
 }

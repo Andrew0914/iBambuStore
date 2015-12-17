@@ -9,6 +9,7 @@
 <%@page import="bambu.otros.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,15 +24,10 @@
             <ul>
                 <li><a href="index.jsp">Ventas <img src='imagen/signal12.png'></a></li> 
                 <li><a href="Compras.jsp">Compras <img src='imagen/shop32.png'></a></li>
-                        <%
-                            int puede = ((Usuario) request.getSession().getAttribute("usuario")).getPrivilegio();
-                            if (puede == 1) {
-                                out.println("<li><a href='Productos.jsp'>Productos <img src='imagen/product3.png'></a></li>"
-                                        + "<li><a href='Proveedores.jsp'> Proveedor <img src='imagen/delivery36.png'></a></li>"
-                                        + "<li><a href='Reportes.jsp'>Reportes <img src='imagen/report1.png'></a></li>"
-                                        + "<li><a id='nuevoUsuario'><img src='imagen/adduser.png'></a></li>");
-                            }
-                        %>
+                <li><a href='Productos.jsp'>Productos <img src='imagen/product3.png'></a></li>
+                <li><a href='Proveedores.jsp'> Proveedor <img src='imagen/delivery36.png'></a></li>
+                <li><a href='Reportes.jsp'>Reportes <img src='imagen/report1.png'></a></li>
+                <!--<li><a id='nuevoUsuario'><img src='imagen/adduser.png'></a></li>-->
                 <li id="logout"><img src="imagen/door9.png"></li>
             </ul>
         </nav>
@@ -76,7 +72,7 @@
         </ul>
     </section>
 
-    <div id="pop">
+   <!-- <div id="pop">
         <span id="close"> X </span>
         <ul>
             <li> <img src="imagen/add199.png"> </li> 
@@ -91,14 +87,14 @@
                 <input type="password" id="x_contrasena" placeholder="Repetir password...">
             </li>
             <%
-                if (puede == 1) {
+                /*if (puede == 1) {
                     out.println("<li>"
                             + "Administrador: <input name='tipo_user' type='radio' id='admin'>"
                             + "<br> <br>"
                             + "Tendero : <input type='radio' name='tipo_user' id='tendero'> "
                             + " <br> <br>"
                             + "</li>");
-                }
+                }*/
             %>
 
 
@@ -109,7 +105,7 @@
                 <button onclick="nuevoUsuario_admin()"> Crear Usuario</button>
             </li>
         </ul>
-    </div>
+    </div> -->
     <div id="pop_producto_und">
         <h4> Cantidad comprada en: </h4> <br><br>               
         Kilogramos (Kg)<input type="radio" name="medidas" id="kilos"> <br> <br>
@@ -125,4 +121,6 @@
     <script type="text/javascript" src="javascript/Sesion.js"></script>
     <script type="text/javascript" src="javascript/Main.js"></script>
 </body>
+
+
 </html>

@@ -28,22 +28,15 @@
                 <ul>
                     <li><a href="index.jsp">Ventas <img src='imagen/signal12.png'></a></li> 
                     <li><a href="Compras.jsp">Compras <img src='imagen/shop32.png'></a></li>
-                            <%
-                                int puede = ((Usuario) request.getSession().getAttribute("usuario")).getPrivilegio();
-                                if (puede == 1) {
-                                    out.println("<li><a href='Productos.jsp'>Productos <img src='imagen/product3.png'></a></li>"
-                                            + "<li><a href='Proveedores.jsp'> Proveedor <img src='imagen/delivery36.png'></a></li>"
-                                            + "<li><a href='Reportes.jsp'>Reportes <img src='imagen/report1.png'></a></li>"
-                                            + "<li><a id='nuevoUsuario'><img src='imagen/adduser.png'></a></li>");
-                                }
-                            %>
+                    <li><a href='Productos.jsp'>Productos <img src='imagen/product3.png'></a></li>
+                    <li><a href='Proveedores.jsp'> Proveedor <img src='imagen/delivery36.png'></a></li>
+                    <li><a href='Reportes.jsp'>Reportes <img src='imagen/report1.png'></a></li>
+                    <!--<li><a id='nuevoUsuario'><img src='imagen/adduser.png'></a></li>-->
                     <li id="logout"><img src="imagen/door9.png"></li>
                 </ul>
             </nav>
 
         </header>
-
-
 
         <section id="general_compras">
             <h2>Compras</h2>
@@ -52,11 +45,11 @@
             <input type="text" id="search_proveedor" placeholder="Buscar ..." class="cajasPrincipales focusCaja">
             <select id="list_proveedores" class="focusCaja">
                 <%
-                    Connection conn = new Conexion().conectar();
+                   Usuario usr = (Usuario) (request.getSession().getAttribute("usuario"));
                     Statement ejecutor;
                     ResultSet resultado;
                     String opciones = "";
-                    ejecutor = conn.createStatement();
+                    ejecutor = usr.conexion.conectar().createStatement();
                     resultado = ejecutor.executeQuery("SELECT id_proveedor,empresa from proveedores");
                     while (resultado.next()) {
                         opciones += "<option value=" + resultado.getString("id_proveedor") + ""

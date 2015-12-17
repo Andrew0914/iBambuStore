@@ -1,6 +1,7 @@
 package bambu.contabilidad;
 
 import bambu.otros.Conexion;
+import bambu.otros.Usuario;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.io.InputStream;
@@ -21,13 +22,13 @@ import net.sf.jasperreports.engine.util.JRLoader;
 public class Saldos {
 
     private ResultSet content;
-    private Connection conn;
+    public Usuario usuario;
     private Statement ejecutor;
     JasperReport reporte;
     JasperPrint jasperPrint;
 
-    public Saldos() {
-        this.conn = new Conexion().conectar();
+    public Saldos(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public JsonArray generarReporteVentas(String fecha1, String fecha2) {
@@ -36,7 +37,7 @@ public class Saldos {
         String query = "SELECT * FROM ventas WHERE fecha_venta BETWEEN '" + fecha1 + "' AND '" + fecha2 + "'";
         System.out.println(query);
         try {
-            this.ejecutor = this.conn.createStatement();
+            this.ejecutor = this.usuario.conexion.conectar().createStatement();
             this.content = this.ejecutor.executeQuery(query);
             while (this.content.next()) {
                 json.addProperty("idVenta", this.content.getString("idVenta"));
@@ -67,7 +68,7 @@ public class Saldos {
         String query = "SELECT * FROM compras WHERE fecha_compra BETWEEN '" + fecha1 + "' AND '" + fecha2 + "'";
         System.out.println(query);
         try {
-            this.ejecutor = this.conn.createStatement();
+            this.ejecutor = this.usuario.conexion.conectar().createStatement();
             this.content = this.ejecutor.executeQuery(query);
             while (this.content.next()) {
                 json.addProperty("id_compra", this.content.getString("id_compra"));

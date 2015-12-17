@@ -5,6 +5,7 @@
 package bambu.proveedores;
 
 import bambu.otros.Conexion;
+import bambu.otros.Usuario;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.sql.Connection;
@@ -19,18 +20,18 @@ import java.sql.Statement;
 public class Proveedores {
 
     private String empresa;
-    private Connection conn;
+    public Usuario usuario;
     private Statement ejecutor;
     private ResultSet rs;
 
-    public Proveedores(String empresa) {
+    public Proveedores(String empresa,Usuario usuario) {
         this.empresa = empresa;
-        this.conn = new Conexion().conectar();
+        this.usuario= usuario;
     }
 
-    public Proveedores() {
+    public Proveedores(Usuario usuario) {
 
-        this.conn = new Conexion().conectar();
+        this.usuario = usuario;
     }
 
     public JsonArray getProveedor() {
@@ -38,7 +39,7 @@ public class Proveedores {
         JsonArray arr = new JsonArray();
         String query = "SELECT * FROM proveedores WHERE empresa LIKE '%" + this.empresa + "%'";
         try {
-            this.ejecutor = this.conn.createStatement();
+            this.ejecutor = this.usuario.conexion.conectar().createStatement();
             this.rs = this.ejecutor.executeQuery(query);
             while (rs.next()) {
                 json.addProperty("id_proveedor", rs.getString("id_proveedor"));
@@ -72,7 +73,7 @@ public class Proveedores {
             query += " WHERE id_proveedor='" + dato[0] + "'";
 
             try {
-                this.ejecutor = this.conn.createStatement();
+                this.ejecutor = this.usuario.conexion.conectar().createStatement();
                 System.out.println(query);
                 this.ejecutor.execute(query);
                 query = new String();
@@ -88,7 +89,7 @@ public class Proveedores {
         boolean resultado = false;
         String query = "DELETE FROM proveedores WHERE id_proveedor='" + id + "'";
         try {
-            this.ejecutor = this.conn.createStatement();
+            this.ejecutor = this.usuario.conexion.conectar().createStatement();
             this.ejecutor.execute(query);
             resultado = true;
         } catch (SQLException x) {
@@ -107,7 +108,7 @@ public class Proveedores {
                 + paterno + "','"
                 + materno + "')";
         try{
-        this.ejecutor = this.conn.createStatement();
+        this.ejecutor =this.usuario.conexion.conectar().createStatement();
         this.ejecutor.execute(query);
         }catch(SQLException ex){System.out.println(ex);}
         respuesta = true;
